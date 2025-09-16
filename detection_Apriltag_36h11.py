@@ -10,12 +10,12 @@ WIDTH, HEIGH = 3280, 2464
 picam2.configure(picam2.create_preview_configuration({'size': (WIDTH, HEIGH)}))
 picam2.start()
 
-fx = 2530.69519
-fy = 2522.04812
-cx = 1758.66732
-cy = 1218.35539
+fx = 971.94324566
+fy = 970.48731642
+cx = 378.54097517
+cy = 236.68125871
 mtx = numpy.array([[fx, 0, cx], [0, fy, cy], [0, 0, 1]])
-dist = numpy.array([[0.13432391, -0.13190146, 0.00487085, 0.01105209, -0.308719371]])
+dist = numpy.array([[−0.583721964 8.69392525 −0.0311477149 0.0122369825 −36.3951426]])
 
 # Acquisition de l’image, correction et détection des tags présents sur l’image
 img = cv2.cvtColor(picam2.capture_array(), cv2.COLOR_BGR2GRAY)  # prise d’une photo
@@ -24,7 +24,7 @@ img_undistorded = cv2.undistort(img, mtx, dist, None, newCameraMatrix=mtx)
 tags = at_detector.detect(img_undistorded,
     estimate_tag_pose=True,
     camera_params=[fx, fy, cx, cy],
-    tag_size=0.173)
+    tag_size=0.05)
 
 print(tags)
 
